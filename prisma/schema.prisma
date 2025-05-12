@@ -14,8 +14,9 @@ model User {
   password           String
   verifyCode         String
   verifyCodeExpiry   DateTime
-  isAcceptingMessage Boolean
-  message            Message[]
+  isVerified         Boolean   @default(false)
+  isAcceptingMessage Boolean   @default(true)
+  messages           Message[]
 }
 
 model Message {
