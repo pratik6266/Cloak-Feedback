@@ -162,7 +162,7 @@ const Page = () => {
                   <>
                     <Loader className="mr-2 h-4 w-4 animate-spin"/> Please wait
                   </>
-                ) : ('SignUp')
+                ) : ('Sign  Up')
               }
             </Button>
 

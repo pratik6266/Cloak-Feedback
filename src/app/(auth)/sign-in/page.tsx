@@ -95,7 +95,7 @@ const Page = () => {
                   <>
                     <Loader className="mr-2 h-4 w-4 animate-spin"/> Please wait
                   </>
-                ) : ('SignIn')
+                ) : ('Sign In')
               }
             </Button>
 
@@ -106,7 +106,7 @@ const Page = () => {
           <p>
             Not a member yet?{' '}
             <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
-              Sign In
+              Sign Up
             </Link>
           </p>
         </div>
