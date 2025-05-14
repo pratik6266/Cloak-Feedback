@@ -2,7 +2,7 @@ import prisma from "@/config/db.config";
 import bcrypt from "bcryptjs";
 import { sendVerificationEmail } from "@/helpers/sendEmailVerification";
 
-export async function POST(req: Request){
+export async function POST(req: Request){ 
   try {
     const {userName, email, password} =  await req.json();
     const existingUserByUserName = await prisma.user.findFirst({
