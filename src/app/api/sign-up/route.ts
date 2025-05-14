@@ -35,7 +35,7 @@ export async function POST(req: Request){
       if(existingUserByEmail.isVerified){
         return Response.json({
           success: false,
-          message: "User already exists with this emial"
+          message: "Email is not aviable"
         }, {status: 400})
       }
       else{
