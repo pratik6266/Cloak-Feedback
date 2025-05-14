@@ -26,7 +26,7 @@ export async function POST(req: Request){
 
     const existingUserByEmail = await prisma.user.findFirst({
       where: {
-        email,
+        email: email,
       }
     })
     const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -35,16 +35,25 @@ export async function POST(req: Request){
       if(existingUserByEmail.isVerified){
         return Response.json({
           success: false,
-          message: "Email is not aviable"
+          message: "Email is already registered"
         }, {status: 400})
       }
       else{
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
 
-        existingUserByEmail.password = hashPassword;
-        existingUserByEmail.verifyCode = verifyCode;
-        existingUserByEmail.verifyCodeExpiry = new Date(Date.now() + 3600000);
+        const newCodeExpiry: Date = new Date(Date.now() + 3600000);
+        await prisma.user.updateMany({
+          where: {
+            email: email,
+          },
+          data:{
+            userName,
+            password: hashPassword,
+            verifyCode: verifyCode,
+            verifyCodeExpiry: newCodeExpiry
+          }
+        })
       }
     }
     else{
