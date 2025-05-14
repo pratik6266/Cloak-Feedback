@@ -107,6 +107,18 @@ const Page = () => {
                       }}
                     />
                   </FormControl>
+                  {isCheckingUserName && <Loader className="animate-spin" />}
+                  {!isCheckingUserName && userNameMessage && (
+                    <p
+                      className={`text-sm ${
+                        userNameMessage === 'UserName is aviable'
+                          ? 'text-green-500'
+                          : 'text-red-500'
+                      }`}
+                    >
+                      {userNameMessage}
+                    </p>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}
