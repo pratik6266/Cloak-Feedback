@@ -91,12 +91,17 @@ const Page = () => {
     }
   }
 
+  const [baseUrl, setBaseUrl] = useState('');
   const userName = session?.user.userName;
-  const baseUrl = `${window.location.protocol}//${window.location.host}`
-  const profileUrl = `${baseUrl}/u/${userName}`
+
+  useEffect(() => {
+    const protocol = window.location.protocol;
+    const host = window.location.host;
+    setBaseUrl(`${protocol}//${host}/u/${userName}`)
+  }, [userName])
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(profileUrl);
+    navigator.clipboard.writeText(baseUrl);
     toast("Copied to clipboard")
   }
 
@@ -113,7 +118,7 @@ const Page = () => {
         <div className="flex items-center">
           <input
             type="text"
-            value={profileUrl}
+            value={baseUrl}
             disabled
             className="input input-bordered w-full p-2 mr-2"
           />
