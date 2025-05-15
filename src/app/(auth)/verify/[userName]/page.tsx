@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+// import { Input } from '@/components/ui/input';
 import { verifySchema } from '@/schema/verifySchema';
 import { ApiResponse } from '@/types/apiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from "sonner"
 import * as z from 'zod';
 import { Loader } from 'lucide-react';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 
 const Page = () => {
   const router = useRouter();
@@ -66,6 +67,7 @@ const Page = () => {
     }
     finally{
       setSending(false);
+      form.reset();
     }
   }
 
@@ -89,7 +91,16 @@ const Page = () => {
                 <FormItem>
                   <FormLabel>OTP</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your OTP" {...field} />
+                    <InputOTP maxLength={6} {...field}>
+                      <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

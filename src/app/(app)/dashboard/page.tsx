@@ -118,7 +118,10 @@ const Page = () => {
             disabled
             className="input input-bordered w-full p-2 mr-2"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button
+            className="px-6 py-2 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+            onClick={copyToClipboard}>Copy
+          </Button>
         </div>
       </div>
 

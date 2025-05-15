@@ -13,7 +13,9 @@ import { toast } from 'sonner';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { AlertCircle, Loader2 } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 
 
@@ -21,6 +23,9 @@ const Page = () => {
 
   const params = useParams<{ userName: string }>();
   const userName: string = params.userName;
+
+  const {data: session} = useSession();
+  const loggedUser = session?.user;
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -48,6 +53,24 @@ const Page = () => {
       form.reset();
       setSubmitting(false)
     }
+  }
+
+  if(userName === loggedUser?.userName){
+    return (
+      <>
+        <div className="flex items-center justify-center min-h-screen px-4">
+          <div className="max-w-md w-full scale-110">
+            <Alert variant="destructive">
+              <AlertCircle className="h-5 w-5" />
+              <AlertTitle className="text-lg">Invalid</AlertTitle>
+              <AlertDescription className="text-base">
+                You cannot give feedback to yourself
+              </AlertDescription>
+            </Alert>
+          </div>
+        </div>
+      </>
+    )
   }
 
   return (
