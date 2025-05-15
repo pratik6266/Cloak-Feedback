@@ -19,9 +19,9 @@ export async function POST(req: Request){
 
     if(!user.isAcceptingMessage){
       return Response.json({
-        success: false,
-        message: "User is not accepting message"
-      }, { status: 403 })
+        success: true,
+        message: "User is not accepting feedback"
+      }, { status: 200 })
     }
 
     const newMsg = await prisma.message.create({
