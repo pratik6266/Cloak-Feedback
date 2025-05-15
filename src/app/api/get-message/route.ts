@@ -36,7 +36,7 @@ export async function get (){
 
     return Response.json({
       success: true,
-      messages: userWithMessages
+      messages: userWithMessages.messages
     }, {status: 200})
   } 
   catch (error) {
