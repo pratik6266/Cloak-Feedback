@@ -47,7 +47,7 @@ export async function POST(req: Request){
   
     return Response.json({
       success: true,
-      message: "OTP resend successfull",
+      message: "OTP send successfully",
     }, {status: 200})
   } 
   catch (error) {
