@@ -33,7 +33,6 @@ const Page = () => {
         userName: params.userName,
         code: data.code
       });
-      console.log(response); //todo to be reomved
       toast(response.data.message);
       router.replace('/sign-in');
     } 
@@ -45,6 +44,28 @@ const Page = () => {
     }
     finally{
       setIsSubmitting(false)
+    }
+  }
+  
+  const userName: string = params.userName;
+  const payload = {
+    userName, 
+  }
+  const [sending, setSending] = useState(false);
+  const sendOTP = async () => {
+    setSending(true)
+    try {
+      const response = await axios.get('/api/send-otp', {data: payload})
+      toast(response.data.message)
+    } 
+    catch (error) {
+      console.error('Error during resending otp:', error);
+      const axiosError = error as AxiosError<ApiResponse>;
+      const errorMessage = axiosError.response?.data.message || "OTP resend fail, Try Again";
+      toast(errorMessage);
+    }
+    finally{
+      setSending(false);
     }
   }
 
@@ -75,7 +96,7 @@ const Page = () => {
               )}
             />
 
-            <Button type='submit' disabled={isSubmitting}>
+            <Button type='submit' disabled={isSubmitting} className="px-6 py-2 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
               {isSubmitting ? (
                 <>
                   <Loader className='animate-spin'/>
@@ -83,6 +104,17 @@ const Page = () => {
                 </>
               ) : (<p>Verify</p>)}
             </Button>
+
+            <div className='flex items-center justify-center'>
+              <div className='mr-2'>Didn&apos;t Recive OTP</div>
+              <button
+                disabled={sending}
+                onClick={sendOTP}
+                className="bg-transparent p-0 m-0 border-0 text-blue-600 cursor-pointer hover:underline focus:outline-none hover:tracking-wide transition-all ease-in-out duration-300 hover:text-blue-800"
+              >
+                Send again
+              </button>   
+            </div>
 
           </form>
         </Form>

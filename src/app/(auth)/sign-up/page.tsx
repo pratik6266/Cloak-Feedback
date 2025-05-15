@@ -87,7 +87,7 @@ const Page = () => {
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Welcome Back to True Feedback
           </h1>
-          <p className="mb-4">Sign in to continue your secret conversations</p>
+          <p className="mb-4">Sign up to continue your secret conversations</p>
         </div>
         
         <Form {...form}>
@@ -156,7 +156,7 @@ const Page = () => {
               )}
             />
 
-            <Button type="submit" disabled={isSubmitting} >
+            <Button type="submit" disabled={isSubmitting} className="px-6 py-2 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg" >
               {
                 isSubmitting ? (
                   <>
@@ -172,7 +172,7 @@ const Page = () => {
         <div className="text-center mt-4">
           <p>
             Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="bg-transparent p-0 m-0 border-0 text-blue-600 cursor-pointer hover:underline focus:outline-none hover:tracking-wide transition-all ease-in-out duration-300 hover:text-blue-800">
               Sign In
             </Link>
           </p>
