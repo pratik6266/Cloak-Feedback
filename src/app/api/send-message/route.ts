@@ -33,7 +33,7 @@ export async function POST(req: Request){
 
     return Response.json({
       success: true,
-      message: "Message sent successfully",
+      message: "Feedback sent successfully",
       newMsg: newMsg
     }, { status: 200 })
   } 
