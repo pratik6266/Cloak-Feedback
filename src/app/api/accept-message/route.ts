@@ -84,7 +84,7 @@ export async function GET (){
     const userStatus = getUser.isAcceptingMessage;
     return Response.json({
       success: true,
-      isAcceptingMessage: userStatus
+      isAcceptingMessages: userStatus
     }, {status: 200})
 
   } 
