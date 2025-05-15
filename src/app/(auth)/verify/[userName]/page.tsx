@@ -55,7 +55,7 @@ const Page = () => {
   const sendOTP = async () => {
     setSending(true)
     try {
-      const response = await axios.get('/api/send-otp', {data: payload})
+      const response = await axios.post('/api/send-otp', {data: payload})
       toast(response.data.message)
     } 
     catch (error) {
