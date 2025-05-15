@@ -105,6 +105,15 @@ const Page = () => {
 
         <div className="text-center mt-4">
           <p>
+            Don&apos;t remember password{' '}
+            <Link href="/forgot-password" className="bg-transparent p-0 m-0 border-0 text-blue-600 cursor-pointer hover:underline focus:outline-none hover:tracking-wide transition-all ease-in-out duration-300 hover:text-blue-800">
+              Forgot Password
+            </Link>
+          </p>
+        </div>
+
+        <div className="text-center mt-4">
+          <p>
             Not a member yet?{' '}
             <Link href="/sign-up" className="bg-transparent p-0 m-0 border-0 text-blue-600 cursor-pointer hover:underline focus:outline-none hover:tracking-wide transition-all ease-in-out duration-300 hover:text-blue-800">
               Sign Up
