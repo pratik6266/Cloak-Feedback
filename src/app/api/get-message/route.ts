@@ -3,7 +3,7 @@ import { authOptions } from "../auth/[...nextauth]/option";
 import prisma from "@/config/db.config";
 import { User } from "next-auth";
 
-export async function get (){
+export async function GET (){
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User;
 
