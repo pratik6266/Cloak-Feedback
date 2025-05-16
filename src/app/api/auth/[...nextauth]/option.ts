@@ -54,20 +54,13 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      if (token?.email) {
-      const userInDb = await prisma.user.findFirst({
-        where: {
-          email: token.email 
-        }
-      });
 
-      if (userInDb) {
-        session.user.id = userInDb.id.toString();
-        session.user.isVerified = userInDb.isVerified;
-        session.user.isAcceptingMessage = userInDb.isAcceptingMessage;
-        session.user.userName = userInDb.userName; // 🔁 Fresh from DB
+      if(token){
+        session.user.id = token.id;
+        session.user.isVerified = token.isVerified;
+        session.user.isAcceptingMessage = token.isAcceptingMessage;
+        session.user.userName = token.userName;
       }
-    } 
 
       return session
     }

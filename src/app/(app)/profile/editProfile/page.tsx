@@ -8,8 +8,7 @@ import { ApiResponse } from '@/types/apiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
-import { getSession, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -59,8 +58,6 @@ const Page = () => {
     checkIsAviable();
   }, [userName]);
 
-  const router = useRouter()
-
   const onSubmit = async (data: z.infer<typeof userNameScehma>) => {
     setIsSubmitting(true)
     try {
@@ -68,9 +65,10 @@ const Page = () => {
         old: loggedUserName,
         newName: data.userName
       })
-      toast(`${response.data.message}`)
-      await getSession();
-      router.replace(`/dashboard?reload=true`);
+      toast(`${response.data.message}, Please login again`)
+      setTimeout(() => {
+        signOut()
+      }, 2000);
     } 
     catch (error) {
       const axiosError = error as AxiosError<ApiResponse>
