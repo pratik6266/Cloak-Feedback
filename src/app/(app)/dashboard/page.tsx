@@ -55,14 +55,12 @@ const Page = () => {
     setIsSwitchLoading(true)
     try {
       const response = await axios.get(`/api/get-message`)
-      console.log(response);
       setMessages(response.data.messages || [])
       if(refresh){
         toast("Refreshed Messages");
       }
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      console.log("failed");
       toast(axiosError.response?.data.message || "Failed to fetch messages here");
     }
     finally{
