@@ -13,15 +13,15 @@ const Navbar = () => {
 
   return (
     <>  
-      <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
-      <div className="container flex justify-between items-center">
+      <nav className="p-4 bg-gray-900 text-white">
+      <div className="flex justify-between items-center">
         <a href="/dashboard" className="sm: text-xl font-bold mb-4 md:mb-0 text-gray-300 hover:text-gray-100 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
           Cloak Feedback
         </a>
         {session ? (
           <>
             <Link href='/profile'>
-              <span className="mr-4">
+              <span className="mr-4 hover:underline hover:text-gray-300 hover:text-lg hover:tracking-wider transition-all duration-300 ease-in-out cursor-pointer">
                 Welcome, {user.userName || user.email}
               </span>
             </Link>
