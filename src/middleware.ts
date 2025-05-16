@@ -3,7 +3,7 @@ import { getToken } from 'next-auth/jwt';
 export { default } from 'next-auth/middleware';
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/profile', '/sign-in', '/sign-up', '/', '/verify/:path*'],
+  matcher: ['/dashboard/:path*', '/profile/:path*', '/sign-in', '/sign-up', '/', '/verify/:path*'],
 };
 
 export async function middleware(request: NextRequest) {

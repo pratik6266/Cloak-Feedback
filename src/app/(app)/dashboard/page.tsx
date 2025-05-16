@@ -11,12 +11,25 @@ import { Separator } from '@radix-ui/react-separator'
 import axios, { AxiosError } from 'axios'
 import { Loader2, RefreshCcw } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import { useSearchParams } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
 const Page = () => {
+
+  const searchParams = useSearchParams();
+  const reload = searchParams.get('reload');
+
+  useEffect(() => {
+    if (reload === 'true') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('reload');
+      window.history.replaceState({}, '', url.toString());
+      window.location.reload();
+    }
+  }, [reload]);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
