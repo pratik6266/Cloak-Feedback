@@ -61,11 +61,11 @@ export default function ProfilePage() {
               </div>
 
               <div className="flex justify-center gap-4">
-                <Button onClick={editProfile} className="flex items-center gap-2">
+                <Button onClick={editProfile} className="px-6 py-2 rounded-sm shadow-md transition-all duration-100 ease-in-out transform hover:scale-105 hover:shadow-lg">
                   <Edit className="h-4 w-4" />
                   Edit Profile
                 </Button>
-                <Button onClick={changePassword} variant="outline" className="flex items-center gap-2">
+                <Button onClick={changePassword} variant="outline" className="px-6 py-2 rounded-sm shadow-sm transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
                   <Key className="h-4 w-4" />
                   Change Password
                 </Button>
