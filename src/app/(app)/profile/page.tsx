@@ -36,7 +36,7 @@ export default function ProfilePage() {
           <div className="space-y-8">
               <div className="flex flex-col items-center space-y-4">
                 <Avatar className="h-24 w-24">
-                  <AvatarImage src={ "/placeholder.svg"} alt={userName} />
+                  <AvatarImage src={''} alt={userName} />
                   <AvatarFallback>{userName.substring(0, 2).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <h2 className="text-2xl font-bold">{userName}</h2>
