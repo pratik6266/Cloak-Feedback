@@ -12,9 +12,9 @@ export async function POST(req: Request){
 
     if(!user){
       return Response.json({
-        success: false,
+        success: true,
         message: "User not found"
-      }, { status: 400})
+      }, { status: 200})
     }
 
     if(!user.isAcceptingMessage){
