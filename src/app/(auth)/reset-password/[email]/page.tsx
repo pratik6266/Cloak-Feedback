@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { resetPasswordSchema } from '@/schema/resetPasswordSchema';
+import { resetPassWithOtpSchema } from '@/schema/resetPasswordSchema';
 import { ApiResponse } from '@/types/apiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
@@ -22,21 +22,19 @@ const Page = () => {
 
   const email = decodeURIComponent(params.email);
 
-  const form = useForm<z.infer<typeof resetPasswordSchema>>({
-    resolver: zodResolver(resetPasswordSchema),
+  const form = useForm<z.infer<typeof resetPassWithOtpSchema>>({
+    resolver: zodResolver(resetPassWithOtpSchema),
     defaultValues:{
-      old: '',
       one: '',
       two: ''
     }
   })
 
-  const onSubmit = async (data: z.infer<typeof resetPasswordSchema>) => {
+  const onSubmit = async (data: z.infer<typeof resetPassWithOtpSchema>) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post('/api/update-password', {
+      const response = await axios.post('/api/reset-password', {
         email,
-        currPassword: data.old,
         newPassword: data.one,
         newPasswordAgain: data.two
       })
@@ -65,22 +63,6 @@ const Page = () => {
           
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-
-              <FormField
-                name="old"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Current Password</FormLabel>
-                    <FormControl>
-                      <Input type='password' placeholder="Enter Current Password" 
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
 
               <FormField
                 name="one"

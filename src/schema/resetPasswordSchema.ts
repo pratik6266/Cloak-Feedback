@@ -5,3 +5,8 @@ export const resetPasswordSchema = z.object({
   one: z.string().min(8, {message: "Password should be atleast 8 characters"}),
   two: z.string().min(8, {message: "Password should be atleast 8 characters"})
 })
+
+export const resetPassWithOtpSchema = z.object({
+  one: z.string().min(8, {message: "Password should be atleast 8 characters"}),
+  two: z.string().min(8, {message: "Password should be atleast 8 characters"})
+})
