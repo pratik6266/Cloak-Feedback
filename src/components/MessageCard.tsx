@@ -20,11 +20,11 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from './ui/button'
 import { X } from 'lucide-react'
-import { Message } from '@prisma/client'
 import axios from 'axios'
 import { ApiResponse } from '@/types/apiResponse'
 import { toast } from 'sonner'
 import dayjs from 'dayjs';
+import { Message } from '../../generated/prisma'
 
 
 type MessageCardProps = {

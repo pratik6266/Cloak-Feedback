@@ -6,7 +6,6 @@ import { Switch } from '@/components/ui/switch'
 import { acceptMessageSchema } from '@/schema/acceptMessageSchema'
 import { ApiResponse } from '@/types/apiResponse'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Message } from '@prisma/client'
 import { Separator } from '@radix-ui/react-separator'
 import axios, { AxiosError } from 'axios'
 import { Loader2, RefreshCcw } from 'lucide-react'
@@ -15,6 +14,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
+import { Message } from '../../../../generated/prisma'
 
 const Page = () => {
 
