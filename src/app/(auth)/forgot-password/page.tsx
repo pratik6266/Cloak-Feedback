@@ -14,6 +14,7 @@ import * as z from 'zod'
 import { toast } from 'sonner';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import { useRouter } from 'next/navigation';
+import OtpSpamAlert from '@/components/SpanAttention';
 
 const Page = () => {
 
@@ -21,6 +22,7 @@ const Page = () => {
   const [isSubmitting2, setIsSubmitting2] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [sending, setSending] = useState<boolean>(false);
+  const [otpSend, setOtpSend] = useState<boolean>(false);
 
   const form1 = useForm<z.infer<typeof forgotEmail>>({
     resolver: zodResolver(forgotEmail),
@@ -44,6 +46,7 @@ const Page = () => {
     }
     finally{
       setIsSubmitting(false);
+      setOtpSend(true);
     }
   }
 
@@ -168,6 +171,8 @@ const Page = () => {
                 </>
               ) : (<p>Verify</p>)}
             </Button>
+
+            {otpSend && <OtpSpamAlert />}
 
             <div className='flex items-center justify-center'>
               <div className='mr-2'>Didn&apos;t Recive OTP</div>

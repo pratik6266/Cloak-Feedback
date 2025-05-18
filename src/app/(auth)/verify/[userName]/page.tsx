@@ -13,6 +13,7 @@ import { toast } from "sonner"
 import * as z from 'zod';
 import { Loader } from 'lucide-react';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
+import OtpSpamAlert from '@/components/SpanAttention';
 
 const Page = () => {
   const router = useRouter();
@@ -105,7 +106,7 @@ const Page = () => {
               )}
             />
 
-            <Button type='submit' disabled={isSubmitting} className="px-6 py-2 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+              <Button type='submit' disabled={isSubmitting} className="px-6 py-2 rounded-xl shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
               {isSubmitting ? (
                 <>
                   <Loader className='animate-spin'/>
@@ -113,6 +114,8 @@ const Page = () => {
                 </>
               ) : (<p>Verify</p>)}
             </Button>
+
+            <OtpSpamAlert />
 
             <div className='flex items-center justify-center'>
               <div className='mr-2'>Didn&apos;t Recive OTP</div>
