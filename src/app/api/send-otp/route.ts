@@ -3,7 +3,6 @@ import { sendVerificationEmail } from "@/helpers/sendEmailVerification";
 
 export async function POST(req: Request){
   const { userName }: { userName: string } = await req.json();
-  
   try {
     const user = await prisma.user.findFirst({
       where: {

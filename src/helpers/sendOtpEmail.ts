@@ -1,24 +1,26 @@
-import { resend } from "@/config/resend";
+import transporter from "@/config/nodeMailer.config";
 import { ApiResponse } from "@/types/apiResponse";
-import otp from "../../emails/otp";
+import { Forgot_Password_Verification } from "../../emails/otp";
 
-export async function sendOtpEmail(
+export const sendOtpEmail = async (
   email: string,
   userName: string,
   verifycode: string,
-): Promise<ApiResponse>
-{
+): Promise<ApiResponse> => {
   try {
-    await resend.emails.send({
-      from: process.env.SENDER_EMAIL!,
-      to: email,
-      subject: 'Verification Code',
-      react: otp({userName, otp: verifycode})
+    const info = await transporter.sendMail({
+      from: `"Cloak Feedback" <${process.env.SENDER_GMAIL}>`,
+      to: `${userName}, ${email}`,
+      subject: "Verify Your Eamil",
+      text: "Verify Your Email", 
+      html: Forgot_Password_Verification.replace("{verificationCode}",verifycode), 
     });
 
-    return {success: true, message: "verification email send successfully"};
-  } catch (error) {
-    console.error("Error sending verification email", error);
+    console.log("Message sent:", info.messageId);
+    return {success: true, message: "OTP send successfully"};
+  } 
+  catch (error) {
+    console.error("Failed to send verification email", error);
     return {success: false, message: "Failed to send verification email"};
   }
 }

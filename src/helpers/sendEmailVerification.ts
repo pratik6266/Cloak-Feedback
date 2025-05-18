@@ -1,24 +1,26 @@
-import { resend } from "@/config/resend";
-import VerificationEmail from "../../emails/verification";
+import transporter from "@/config/nodeMailer.config";
 import { ApiResponse } from "@/types/apiResponse";
+import { Verification_Email_Template } from "../../emails/verification";
 
-export async function sendVerificationEmail(
+export const sendVerificationEmail = async (
   email: string,
   userName: string,
   verifycode: string,
-): Promise<ApiResponse>
-{
+): Promise<ApiResponse> => {
   try {
-    await resend.emails.send({
-      from: process.env.SENDER_EMAIL!,
-      to: email,
-      subject: 'Verification Code',
-      react: VerificationEmail({userName, otp: verifycode})
+    const info = await transporter.sendMail({
+      from: `"Cloak Feedback" <${process.env.SENDER_GMAIL}>`,
+      to: `${userName}, ${email}`,
+      subject: "Cloak Feedback Verification",
+      text: "Verify Your Email", 
+      html: Verification_Email_Template.replace("{verificationCode}",verifycode), 
     });
 
-    return {success: true, message: "verification email send successfully"};
-  } catch (error) {
-    console.error("Error sending verification email", error);
+    console.log("Message sent:", info);
+    return {success: true, message: "OTP send successfully"};
+  } 
+  catch (error) {
+    console.error("Failed to send verification email", error);
     return {success: false, message: "Failed to send verification email"};
   }
 }

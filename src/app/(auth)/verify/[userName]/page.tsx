@@ -48,14 +48,13 @@ const Page = () => {
   }
   
   const userName: string = params.userName;
-  const payload = {
-    userName, 
-  }
   const [sending, setSending] = useState(false);
   const sendOTP = async () => {
     setSending(true)
     try {
-      const response = await axios.post('/api/send-otp', {data: payload})
+      const response = await axios.post('/api/send-otp', {
+        userName,
+      })
       toast(response.data.message)
     } 
     catch (error) {
