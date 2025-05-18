@@ -22,7 +22,7 @@ export const Verification_Email_Template: string = `
               border: 1px solid #ddd;
           }
           .header {
-              background-color: #fd2617;
+              background-color: #4CAF50;
               color: white;
               padding: 20px;
               text-align: center;
@@ -38,9 +38,9 @@ export const Verification_Email_Template: string = `
               display: block;
               margin: 20px 0;
               font-size: 22px;
-              color: #fd2617;
-              background: #F5E8E8;
-              border: 1px dashed #fd2617;
+              color: #4CAF50;
+              background: #e8f5e9;
+              border: 1px dashed #4CAF50;
               padding: 10px;
               text-align: center;
               border-radius: 5px;
