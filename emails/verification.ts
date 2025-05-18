@@ -22,7 +22,7 @@ export const Verification_Email_Template: string = `
               border: 1px solid #ddd;
           }
           .header {
-              background-color: #4CAF50;
+              background-color: #fd2617;
               color: white;
               padding: 20px;
               text-align: center;
@@ -38,9 +38,9 @@ export const Verification_Email_Template: string = `
               display: block;
               margin: 20px 0;
               font-size: 22px;
-              color: #4CAF50;
-              background: #e8f5e9;
-              border: 1px dashed #4CAF50;
+              color: #fd2617;
+              background: #F5E8E8;
+              border: 1px dashed #fd2617;
               padding: 10px;
               text-align: center;
               border-radius: 5px;
@@ -67,7 +67,7 @@ export const Verification_Email_Template: string = `
               <p>Hello,</p>
               <p>Thank you for signing up! Please confirm your email address by entering the code below:</p>
               <span class="verification-code">{verificationCode}</span>
-              <p>If you did not create an account, no further action is required.</p>
+              <p>If you did not create an account, Please Ignore, no further action is required.</p>
           </div>
           <div class="footer">
               <p>&copy; ${new Date().getFullYear()} Cloak Feedback. All rights reserved.</p>

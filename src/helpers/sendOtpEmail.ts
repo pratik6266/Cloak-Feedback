@@ -11,8 +11,8 @@ export const sendOtpEmail = async (
     const info = await transporter.sendMail({
       from: `"Cloak Feedback" <${process.env.SENDER_GMAIL}>`,
       to: `${userName}, ${email}`,
-      subject: "Verify Your Eamil",
-      text: "Verify Your Email", 
+      subject: "Cloak Feedback Verification",
+      text: "Reset Your Password", 
       html: Forgot_Password_Verification.replace("{verificationCode}",verifycode), 
     });
 
